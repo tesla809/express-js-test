@@ -11,4 +11,6 @@ app.get('/', function(request, response){
 });
 
 // get app to listen to port 3000
-app.listen(3000);
+app.listen(3000, function(){
+	console.log('The front end server is running on port 3000!');
+});
