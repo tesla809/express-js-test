@@ -30,7 +30,7 @@ app.get('/blog/:title?', function(request, response){
 	} else {
 		// if params defined go to that page with the property from the post.json
 		var blogPostTitle = blogPosts[title];
-		
+		response.render('blogPostsTemplate');
 	}
 });
 
