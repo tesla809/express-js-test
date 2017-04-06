@@ -30,7 +30,14 @@ app.get('/blog/:title?', function(request, response){
 	} else {
 		// if params defined go to that page with the property from the post.json
 		var blogPostTitle = blogPosts[title];
-		response.render('blogPostsTemplate', {theBlogPostTitle: blogPostTitle});
+		if (blogPostTitle === undefined){
+			// set header to 404 for file not found.
+			response.status(404);
+			response.send('<h2>Dang son</h2><h2>File Not Found 404 :(</h2>');
+		} else {
+			// injecting the values of posts.json into blogPostsTemplate.pug
+			response.render('blogPostsTemplate', {theBlogPostTitle: blogPostTitle});
+		}
 	}
 });
 
