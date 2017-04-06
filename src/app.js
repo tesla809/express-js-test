@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express'),
-	  posts = require('./mock/posts.json');
+	  blogPosts = require('./mock/posts.json');
 
 // copies express to app so that we can extend and manipulate it
 var app = express();
@@ -29,7 +29,7 @@ app.get('/blog/:title?', function(request, response){
 		response.send('<h2>Page is under construction :)</h2>');
 	} else {
 		// if params defined go to that page with the property from the post.json
-		var blogPost = blogPosts[title];
+		var blogPostTitle = blogPosts[title];
 		
 	}
 });
