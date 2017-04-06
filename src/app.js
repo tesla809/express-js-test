@@ -8,11 +8,22 @@ var app = express();
 
 // '/' refers to the root directory aka home page
 app.get('/', function(request, response){
-	response.send('<h1>I love Treehouse!</h1>');
+	response.send('<h1>I love to Treehouse!</h1>');
 });
 
-app.get('/blog', function(request, response){
-	response.send(posts);
+// route to blog with optional parameter
+app.get('/blog/:title?', function(request, response){
+	var title = request.params.title;
+	// if title params not defined, go to default blog page
+	if(title === undefined){
+		// set header to 503 unavailable of search engine bots, but still renders for client
+		response.status(503);
+		response.send('<h2>Page is under construction :)</h2>');
+	} else {
+		// if params defined go to that page with the property from the post.json
+		var post = posts[title];
+		response.send(post);
+	}
 });
 
 // get app to listen to port 3000
