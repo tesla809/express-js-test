@@ -6,9 +6,16 @@ var express = require('express'),
 // copies express to app so that we can extend and manipulate it
 var app = express();
 
+// configures view engine to pug templating
+app.set('view engine', 'pug');
+// sets absolute path to find views aka templates to directory name/templates
+// since we may start our process one level up from where the app.js is found.
+app.set('views', __dirname + '/templates');
+
 // '/' refers to the root directory aka home page
 app.get('/', function(request, response){
-	response.send('<h1>I love to Treehouse!</h1>');
+	// render pug template, no need for extension since express was told it was pug above
+	response.render('index');
 });
 
 // route to blog with optional parameter
