@@ -12,6 +12,7 @@ app.set('view engine', 'pug');
 // since we may start our process one level up from where the app.js is found.
 app.set('views', __dirname + '/templates');
 
+
 // '/' refers to the root directory aka home page
 app.get('/', function(request, response){
 	// render pug template, no need for extension since express was told it was pug above
@@ -28,8 +29,8 @@ app.get('/blog/:title?', function(request, response){
 		response.send('<h2>Page is under construction :)</h2>');
 	} else {
 		// if params defined go to that page with the property from the post.json
-		var post = posts[title];
-		response.send(post);
+		var blogPost = blogPosts[title];
+		
 	}
 });
 
