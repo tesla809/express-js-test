@@ -5,7 +5,7 @@ var express = require('express'),
 
 //Convention states that we use arrays to iterate over a list aka array.
 // So, we return turn the object into an array.
-var blogPostsArray = Object.key(blogPosts)
+var blogPostsArray = Object.keys(blogPosts)
 							.map(function(value){
 							 	return blogPosts[value];
 							});
