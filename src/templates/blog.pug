@@ -1,0 +1,17 @@
+extends ./layout.pug
+block content
+	
+	//- blogPostsList is the variable passed in
+	//- we use #{...} if we want to render text in html
+	//- the blogPost is a variable used in the later syntax
+	//- also note, you can use both the keyword 'for' and 'each'
+	//-  to iterate over th list
+	for blogPost in blogPostsList
+		section.post
+			.container
+				.row
+					.col-lg-8.col-lg-offset-2.text-center
+						h2.section-heading #{blogPost.title}
+						hr.light
+						p.text-faded #{blogPost.description}
+						a(href='/blog/' + blogPost.title).btn.btn-default.btn-xl Read more!
