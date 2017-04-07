@@ -1,14 +1,14 @@
 doctype html
 html(lang="en")
-    include ./partials/_head.pug
+	include ./partials/_head.pug
 
-    body#page-top
-        //- to use partial we use the include keyword, instead of extends
-        include ./partials/_nav.pug
-        block content
+	body#page-top
+		//- to use partial we use the include keyword, instead of extends
+		include ./partials/_nav.pug
+		block content
 
 
-    	script(src='/static/js/jquery.js')
+		script(src='/static/js/jquery.js')
 		// Bootstrap Core JavaScript
 		script(src='/static/js/bootstrap.min.js')
 		// Plugins JavaScript
