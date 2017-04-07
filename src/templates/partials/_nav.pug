@@ -19,16 +19,19 @@ nav#mainNav.navbar.navbar-default.navbar-fixed-top
             ul.nav.navbar-nav.navbar-right
                 li
                     a(href='/blog') Blog
-                li
-                    a.page-scroll(href='#about') About
+                //- conditional: if path is the root, we show entire nav bar
+                //- if its false, only the blog will show
+                if path === '/'
+                    li
+                        a.page-scroll(href='#about') About
 
-                li
-                    a.page-scroll(href='#services') Services
+                    li
+                        a.page-scroll(href='#services') Services
 
-                li
-                    a.page-scroll(href='#portfolio') Portfolio
+                    li
+                        a.page-scroll(href='#portfolio') Portfolio
 
-                li
-                    a.page-scroll(href='#contact') Contact
-                // /.navbar-collapse
-                // /.container-fluid
+                    li
+                        a.page-scroll(href='#contact') Contact
+                    // /.navbar-collapse
+                    // /.container-fluid
