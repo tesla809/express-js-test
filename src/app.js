@@ -3,15 +3,32 @@
 var express = require('express'),
 	  blogPosts = require('./mock/posts.json');
 
-// copies express to app so that we can extend and manipulate it
+//Convention states that we use arrays to iterate over a list aka array.
+// So, we return turn the object into an array.
+var blogPostsArray = Object.key(blogPosts)
+							.map(function(value){
+							 	return blogPosts[value];
+							});
+
+// copies express to app so that we can configure, extend and manipulate it
 var app = express();
+
+// uses Express static method to serve files form public directory
+// the first parameter changes the name so that you have to go to ../static/...
+// instead of the root aka /..
+// Also, .use() defines middleware for the app.
+// Middleware is logic that tells Express how to handle a request
+// in between the time a request is made by a client,
+// but before it reaches it arrives at its route
+// Middleware can be used to accompish any range of tasks
+// from authentication, to 
+app.use('/static', express.static(__dirname + '/public'));
 
 // configures view engine to pug templating
 app.set('view engine', 'pug');
 // sets absolute path to find views aka templates to directory name/templates
 // since we may start our process one level up from where the app.js is found.
 app.set('views', __dirname + '/templates');
-
 
 // '/' refers to the root directory aka home page
 app.get('/', function(request, response){
@@ -26,7 +43,10 @@ app.get('/blog/:title?', function(request, response){
 	if(title === undefined){
 		// set header to 503 unavailable of search engine bots, but still renders for client
 		response.status(503);
-		response.send('<h2>Page is under construction :)</h2>');
+		// injecting the blogPostsArray value into the blog.pug template, 
+		// using the blogPostsList key as an alias
+		// The 2nd parameter is an unnamed object that holds the value and alias to be injected
+		response.render('blog', {blogPostsList: blogPostsArray});
 	} else {
 		// if params defined go to that page with the property from the post.json
 		var blogPostTitle = blogPosts[title];
