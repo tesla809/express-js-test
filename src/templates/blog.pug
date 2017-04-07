@@ -13,5 +13,7 @@ block content
 					.col-lg-8.col-lg-offset-2.text-center
 						h2.section-heading #{blogPost.title}
 						hr.light
+						//- when using variables within the body of html, we use #{}
 						p.text-faded #{blogPost.description}
+						//- when using variables within attribute of a tag, we omit the #{}
 						a(href='/blog/' + blogPost.title).btn.btn-default.btn-xl Read more!
