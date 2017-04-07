@@ -32,6 +32,11 @@ app.set('views', __dirname + '/templates');
 
 // '/' refers to the root directory aka home page
 app.get('/', function(request, response){
+	// request.path is the url path of the current request
+	var path = request.path;
+	// the same as going response.render('index', {path: path});
+	// the locals object is what gets rendered in the template
+	response.locals.path = path;
 	// render pug template, no need for extension since express was told it was pug above
 	response.render('index');
 });
