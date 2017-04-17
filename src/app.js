@@ -66,6 +66,21 @@ app.get('/blog/:title?', function(request, response){
 	}
 });
 
+
+// REST API endpoint for raw data
+app.get('/posts', function(request, response){
+	// if ...?raw=true, send raw json object.
+	if(request.query.raw){
+		// response.json is like response.send except 
+		// that .json can coerce null and undefined values into valid json.
+		response.json(blogPosts);
+
+	} else {
+		// if not raw, send array of blog posts
+		response.json(blogPostsArray);
+	} 
+});
+
 // get app to listen to port 3000
 app.listen(3000, function(){
 	console.log('The front end server is running on port 3000!');
